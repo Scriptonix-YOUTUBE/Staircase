@@ -119,7 +119,7 @@ end
 
 local function stair()
 	local a = false
-	local t = create('Magic Staircase tool')
+	local t = create('Magic Staircase Tool')
 	t.Activated:Connect(function()
 		if not a then
 			a = true
