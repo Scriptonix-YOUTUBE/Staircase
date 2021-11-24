@@ -1,3 +1,15 @@
+local function ismouse()
+	local y,re = pcall(function()
+		local m = game.Players.LocalPlayer:GetMouse()
+	end)
+	return y
+end
+
+
+repeat game:GetService'RunService'.RenderStepped:Wait() until ismouse()
+
+
+
 local staircaselimit = _G.StaircaseMaxLimit or 30
 
 local r = 0
