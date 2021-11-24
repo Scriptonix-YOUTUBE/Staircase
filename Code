@@ -1,0 +1,145 @@
+local staircaselimit = _G.StaircaseMaxLimit or 30
+
+local r = 0
+
+local i = Instance.new('NumberValue')
+
+local function create(n)
+	local t = Instance.new('Tool',game.Players.LocalPlayer.Backpack)
+	t.RequiresHandle = false
+	t.Name = n
+	return t
+end
+
+local function getp(g)
+	local m = game.Players.LocalPlayer:GetMouse()
+	m.TargetFilter = g
+	return m.hit.p
+end
+
+local function generatestaircase()
+
+	local Model0 = Instance.new("Model")
+	local Part1 = Instance.new("Part")
+	local Part2 = Instance.new("Part")
+	local Part3 = Instance.new("Part")
+	local Part4 = Instance.new("Part")
+	local Part5 = Instance.new("Part")
+	local Part6 = Instance.new("Part")
+	local Part7 = Instance.new("Part")
+	local Part8 = Instance.new("Part")
+	local Part9 = Instance.new("Part")
+	local Part10 = Instance.new("Part")
+	Part1.Transparency = .5
+	Part2.Transparency = .5
+	Part3.Transparency = .5
+	Part4.Transparency = .5
+	Part5.Transparency = .5
+	Part6.Transparency = .5
+	Part7.Transparency = .5
+	Part8.Transparency = .5
+	Part9.Transparency = .5
+	Part10.Transparency = .5
+	Part1.Parent = Model0
+	Part1.CFrame = CFrame.new(-3, 9.50000095, -29, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part1.Size = Vector3.new(4, 1, 2)
+	Part1.Anchored = true
+	Part1.BottomSurface = Enum.SurfaceType.Smooth
+	Part1.TopSurface = Enum.SurfaceType.Smooth
+	Part2.Parent = Model0
+	Part2.CFrame = CFrame.new(-3, 7.50000095, -27, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part2.Size = Vector3.new(4, 1, 2)
+	Part2.Anchored = true
+	Part2.BottomSurface = Enum.SurfaceType.Smooth
+	Part2.TopSurface = Enum.SurfaceType.Smooth
+	Part3.Parent = Model0
+	Part3.CFrame = CFrame.new(-3, 8.50000095, -28, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part3.Size = Vector3.new(4, 1, 2)
+	Part3.Anchored = true
+	Part3.BottomSurface = Enum.SurfaceType.Smooth
+	Part3.TopSurface = Enum.SurfaceType.Smooth
+	Part4.Parent = Model0
+	Part4.CFrame = CFrame.new(-3, 3.50000095, -23, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part4.Size = Vector3.new(4, 1, 2)
+	Part4.Anchored = true
+	Part4.BottomSurface = Enum.SurfaceType.Smooth
+	Part4.TopSurface = Enum.SurfaceType.Smooth
+	Part5.Parent = Model0
+	Part5.CFrame = CFrame.new(-3, 2.50000095, -22, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part5.Size = Vector3.new(4, 1, 2)
+	Part5.Anchored = true
+	Part5.BottomSurface = Enum.SurfaceType.Smooth
+	Part5.TopSurface = Enum.SurfaceType.Smooth
+	Part6.Parent = Model0
+	Part6.CFrame = CFrame.new(-3, 6.50000095, -26, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part6.Size = Vector3.new(4, 1, 2)
+	Part6.Anchored = true
+	Part6.BottomSurface = Enum.SurfaceType.Smooth
+	Part6.TopSurface = Enum.SurfaceType.Smooth
+	Part7.Parent = Model0
+	Part7.CFrame = CFrame.new(-3, 5.50000095, -25, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part7.Size = Vector3.new(4, 1, 2)
+	Part7.Anchored = true
+	Part7.BottomSurface = Enum.SurfaceType.Smooth
+	Part7.TopSurface = Enum.SurfaceType.Smooth
+	Part8.Parent = Model0
+	Part8.CFrame = CFrame.new(-3, 4.50000095, -24, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part8.Size = Vector3.new(4, 1, 2)
+	Part8.Anchored = true
+	Part8.BottomSurface = Enum.SurfaceType.Smooth
+	Part8.TopSurface = Enum.SurfaceType.Smooth
+	Part9.Parent = Model0
+	Part9.CFrame = CFrame.new(-3, 0.500001013, -20, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part9.Size = Vector3.new(4, 1, 2)
+	Part9.Anchored = true
+	Part9.BottomSurface = Enum.SurfaceType.Smooth
+	Part9.TopSurface = Enum.SurfaceType.Smooth
+	Part10.Parent = Model0
+	Part10.CFrame = CFrame.new(-3, 1.50000095, -21, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Part10.Size = Vector3.new(4, 1, 2)
+	Part10.Anchored = true
+	Part10.BottomSurface = Enum.SurfaceType.Smooth
+	Part10.TopSurface = Enum.SurfaceType.Smooth
+	Model0.PrimaryPart = Part9
+	Model0.Parent = workspace
+	return Model0
+end
+
+local function stair()
+	local a = false
+	local t = create('Magic Staircase tool')
+	t.Activated:Connect(function()
+		if not a then
+			a = true
+			local gen = generatestaircase()
+			for _, v in pairs(gen:GetChildren()) do
+				v.CanCollide = false
+			end
+			repeat
+				local p = getp(gen)
+				gen:SetPrimaryPartCFrame((CFrame.new(p)*CFrame.Angles(0,math.rad(r),0))*CFrame.new(0,.5,-1))
+				game:GetService('RunService').RenderStepped:Wait()
+			until not a
+			for _, v in pairs(gen:GetChildren()) do
+				v.CanCollide = true
+			end
+			local num = i.Value
+			i.Value = (num+1)%staircaselimit
+			i.Changed:Connect(function()
+				if i.Value == num then
+					gen:Destroy()
+				end
+			end)
+		else
+			a = false
+		end
+	end)
+end
+
+game:GetService('UserInputService').InputBegan:Connect(function(inp)
+	if inp.KeyCode == Enum.KeyCode.R then
+		r = (r+90)%360
+	end
+end)
+
+stair()
